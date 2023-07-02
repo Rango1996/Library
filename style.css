@@ -88,7 +88,6 @@ nav {
 
  .popupContainer {
     position:fixed;
-    display:flex;
     top:0;
     left:0;
     width:100%;
@@ -96,13 +95,53 @@ nav {
     background-color: rgba(0,0,0,0.6);
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+ }
+
+ .popupContainer.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
  }
 
  .popupContent {
     background-color: #ffffff;
     padding:20px;
     border-radius: 10px;
+
  }
+
+ .popupContent h2 {
+    font-size: 2.5rem;
+ }
+
+ .popupContent label {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+ }
+
+ .popupContent input {
+    height: 1.2rem;
+ }
+
+ .popupContent button {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    background-color: #939393;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+ }
+
+  .popupContent button:hover {
+    background-color: #b3b0b0;
+  }
 
  #bookForm {
     display: flex;
