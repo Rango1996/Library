@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    overflow:hidden;
 }
 
 
@@ -160,7 +159,6 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     justify-content: center;
  }
@@ -187,17 +185,17 @@ nav {
     border-radius: 4px;
  }
 
- .card #delete{
+ .card .delete{
     background-color: #ff4d4d;
     color: #ffffff;
  }
 
-.card .read {
+.read {
     background-color: #4dbb4d;
     color: #ffffff;
  }
 
-.card .unread{
+.unread{
     background-color: #4d75bb;
     color: #ffffff;
  }

@@ -28,9 +28,9 @@ bookForm.addEventListener('submit', function(event) {
         <p>Author: ${author.value}</p>
         <p>Pages Read: ${pages.value}</p>
         <div class="card-buttons">
-            <button id ="delete">Delete</button>
-            <button class="read-toggle">${read.checked ? 'Read' : 'Unread'}</button>
-        </div>
+            <button class="delete">Delete</button>
+            <button class="read-toggle ${read.checked ? 'read' : 'unread'}">${read.checked ? 'Read' : 'Unread'}</button>
+            </div>
     `;
 
     const readToggleBtn = card.querySelector('.read-toggle');
@@ -45,6 +45,11 @@ bookForm.addEventListener('submit', function(event) {
             readToggleBtn.classList.remove('unread');
             readToggleBtn.classList.add('read');
         }
+    })
+
+    const deleteBtn = card.querySelector('.delete');
+    deleteBtn.addEventListener('click', function() {
+        card.remove();
     })
     
 
