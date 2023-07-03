@@ -64,6 +64,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .addBook h3 {
@@ -143,11 +144,69 @@ nav {
     background-color: #b3b0b0;
   }
 
+  .read-container {
+    display:flex; 
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+  }
+
  #bookForm {
     display: flex;
     flex-direction: column;
  }
 
+ .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    justify-content: center;
+ }
+
+ .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+ }
+
+ .card p {
+    font-size: 1rem;
+    margin: 0.2rem;
+ }
+
+.card .card-buttons {
+    display: flex;
+}
+
+.card .card-buttons button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+ }
+
+ .card #delete{
+    background-color: #ff4d4d;
+    color: #ffffff;
+ }
+
+.card .read {
+    background-color: #4dbb4d;
+    color: #ffffff;
+ }
+
+.card .unread{
+    background-color: #4d75bb;
+    color: #ffffff;
+ }
+
+ .card button:hover {
+    opacity: 0.8;
+ }
+
+ 
 
 
 
