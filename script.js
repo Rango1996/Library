@@ -1,3 +1,17 @@
+let myLibrary = [];
+
+function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+}
+
+function addBookToLibrary(title, author, pages, read) {
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+}
+
 const addBtn = document.getElementById('addBook');
 const title = document.getElementById('title');
 const author = document.getElementById('author');
@@ -6,62 +20,68 @@ const read = document.getElementById('read');
 const bookForm = document.getElementById('bookForm');
 const gridContainer = document.querySelector('.grid-container');
 
-const popupContainer = document.getElementById('popupContainer');
+const popUpContainer = document.getElementById('popupContainer');
 
 addBtn.addEventListener('click', function() {
-    popupContainer.classList.toggle('active');
-})
+    popUpContainer.classList.toggle('active');
+});
 
-popupContainer.addEventListener('click', function(event) {
+popUpContainer.addEventListener('click', function(event) {
     if (!event.target.closest('.popupContent')) {
-        popupContainer.classList.remove('active');
+        popUpContainer.classList.remove('active');
     }
-})
+});
 
 bookForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `
-    <h3>${title.value}</h3>
-        <p>Author: ${author.value}</p>
-        <p>Pages Read: ${pages.value}</p>
-        <div class="card-buttons">
+    addBookToLibrary(title.value, author.value, pages.value, read.checked);
+
+    gridContainer.innerHTML='';
+
+    myLibrary.forEach(book => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+        <h3>${book.title}</h3>
+        <p>Author: ${book.author} </p>
+        <p>Pages Read: ${book.pages} </p>
+        <div class = "card-buttons"> 
             <button class="delete">Delete</button>
-            <button class="read-toggle ${read.checked ? 'read' : 'unread'}">${read.checked ? 'Read' : 'Unread'}</button>
-            </div>
-    `;
+            <button class="read-toggle ${book.read ? 'read' : 'unread'}">${book.read ? 'Read' : 'Unread'}</button>
+        </div>
+        `;
 
-    const readToggleBtn = card.querySelector('.read-toggle');
+        const readToggleBtn = card.querySelector('.read-toggle');
 
-    readToggleBtn.addEventListener('click', function() {
-        if (readToggleBtn.textContent === 'Read') {
-            readToggleBtn.textContent='Unread';
-            readToggleBtn.classList.remove('read');
-            readToggleBtn.classList.add('unread');
-        } else {
-            readToggleBtn.textContent = 'Read';
-            readToggleBtn.classList.remove('unread');
-            readToggleBtn.classList.add('read');
-        }
-    })
+        readToggleBtn.addEventListener('click', function() {
+            if (readToggleBtn.textContent === 'Read') {
+                readToggleBtn.textContent = 'Unread';
+                readToggleBtn.classList.remove('read');
+                readToggleBtn.classList.add('unread');
+                book.read = false;
+            } else {
+                readToggleBtn.textContent = 'Read';
+                readToggleBtn.classList.remove('unread');
+                readToggleBtn.classList.add('read');
+                book.read = true;
+            }
+        })
 
-    const deleteBtn = card.querySelector('.delete');
-    deleteBtn.addEventListener('click', function() {
-        card.remove();
-    })
-    
+        const deleteBtn = card.querySelector('.delete');
+        deleteBtn.addEventListener('click', function() {
+            card.remove();
+            let index = myLibrary.indexOf(book);
+            myLibrary.splice(index, 1);
+        })
 
-    gridContainer.appendChild(card);
+        gridContainer.appendChild(card);
+    });
 
-    title.value='';
+    title.value = '';
     author.value='';
     pages.value='';
-    read.checked='false';
+    read.checked=false;
 
-    popupContainer.classList.remove('active');
+    popUpContainer.classList.remove('active');
 })
-
-
-
